@@ -1,0 +1,83 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+
+<head>
+<meta name="viewport" content="width = device-width, initial-scale = 1, shrink-to-fit = no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<title>smart contect</title>
+</head>
+
+<body>
+	<section>
+		<!--starting of table -->	
+		
+		<div class="container">
+				<div class="text-center">
+					<h1>your contacts</h1>
+				</div>
+				<br>
+				
+				<div class="search-container my-4">
+					<input onkeyup="search()" id="search-input" type="text" class="form-control" placeholder="search your contact">
+					
+					<div class="search-result">
+						<!-- result show there-->
+						
+					</div>
+					
+				</div>
+				
+				
+				<br>
+				<table class="table table-striped table-bordered" >
+					<thead class="table-dark">
+						<tr>
+							<th>firstName</th>
+							<th>lastNmae</th>
+							<th>email</th>
+							<th>phoneNo</th>
+							<th>action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="con : ${cont}">
+							<td>
+								<img class="myProfilePic" th:src="@{'/image'+${con.image}}" />
+								<span th:text="${con.name}"></span>
+							</td>
+							<td th:text="${con.secoundName}"></td>
+							<td>
+						<a th:href="@{'/user/'+${con.cId}+'/contact'}">
+							<span th:text="${con.email}"></span>
+						</a>
+						</td>
+							<td th:text="${con.phone}"></td>
+							<td>
+								<a  href:"#" class="btn btn-primary" th:href="@{'/user/updatecontact/'+${con.cId}}" >update</a>
+								<a  class="btn btn-danger" th:onclick="|deleteContact(${con.cId})|" >delete</a>
+							</td> 
+							
+						</tr>
+					</tbody>
+				</table>
+				
+				<!--pagination -->
+		<div style="background-color:rgb(128, 128, 128);">
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination">
+				    <li th:if="${currentpage != 0}" class="page-item"><a th:href="@{'/user/show-contact/'+${currentpage-1}}" class="page-link" href="#">Previous</a></li>
+				    <li th:classappend="${currentpage==i-1?'active':''}" th:each="i : ${#numbers.sequence(1,totalpage)}" class="page-item"><a th:href="@{'/user/show-contact/'+${i-1}}" class="page-link" href="#"><span th:text="${i}"></span></a></li>
+				    <li th:if="${currentpage+1 != totalpage}" class="page-item"><a th:href="@{'/user/show-contact/'+${currentpage+1}}" class="page-link" href="#">Next</a></li>
+				  </ul>
+				</nav>
+		</div>
+			</div>
+			
+		<!--ending of table -->
+		
+		
+		</section>
+</body>
+</html>

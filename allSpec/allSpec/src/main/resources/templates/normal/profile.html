@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+
+<head>
+<meta name="viewport" content="width = device-width, initial-scale = 1, shrink-to-fit = no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<title>smart contect</title>
+</head>
+
+<body>
+	<section>
+	
+					<div class="card mr-3 ml-3 my-5">
+					<div class="card-body" th:if="${userprofile}">
+						<div class="container text-center">
+							<h1> contact detail</h1>
+							
+							<table class="table">
+							  <thead>
+							    <tr>
+								  <th>id</th>
+								  <td class="text-center" th:text="'2024'+${userprofile.id}"></td>
+							    </tr>
+							  </thead>
+							  <tbody>
+								        <tr>
+										 <th>name</th>
+										  <td class="text-center" th:text="${userprofile.name}"></td>
+		    							  </tr>
+										  
+										  
+										  <tr>
+										   <th>email</th>
+										    <td class="text-center" th:text="${userprofile.email}"></td>
+										      </tr>
+																		  
+																		  
+																		  
+												 <tr>
+					  							 <th>role</th>
+												  <td class="text-center" th:text="${userprofile.role}"></td>
+												  </tr>
+																										  
+											
+										  
+							  </tbody>
+							</table>
+							
+							
+							
+						</div>
+		
+					</div>
+					</div>
+	</section>
+</body>
+</html>

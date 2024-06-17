@@ -1,0 +1,104 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+
+<head>
+<meta name="viewport" content="width = device-width, initial-scale = 1, shrink-to-fit = no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<title>smart contect</title>
+</head>
+
+<body>
+	<section>
+			<div class="card mr-4 ml-4">
+							<div class="card-body">
+								<h1 class="text-center">Update Contact</h1>
+								<div class="container-fluid mt-1">
+								<div class="row">
+									<div class="col-md-10 offset-md-1">
+										<form th:action="@{/user/updatecontacts}" th:object="${contact}" enctype="multipart/form-data" method="post"  class="mt-2">
+											<!-- first name -->
+											<div class="input-group">
+											 <div class="input-group-prepend">
+												<div class="input-group-text ">
+													<i class="fa fa-plus"></i>
+													
+												</div>
+											 </div>	 
+											 <input th:value="${contact.name}" required type="text" id="firstName" name="name" placeholder="Enter your name" class="form-control">
+											</div>
+											
+											
+											<!-- hidden -->
+											<input th:value="${contact.cId}" type="hidden" class="cId">
+											<!-- secoundname -->
+											
+											<div class="input-group mt-3">
+											 <div class="input-group-prepend">
+											   <div class="input-group-text ">
+												<i class="fa fa-user-alt"></i>										
+												</div>
+											  </div>	 
+											<input th:value="${contact.secoundName}" type="text" id="secoundName" name="secoundName" placeholder="Enter your secoundName" class="form-control">
+										 </div>
+													
+										 <!--  phone -->
+										  
+										 <div class="input-group mt-3">
+										 	<div class="input-group-prepend">
+										 	 <div class="input-group-text ">
+										 		<i class="fa fa-phone"></i>										
+										 		   </div>
+										 		  </div>	 
+										 		<input th:value="${contact.phone}" required min="10" type="number" id="phone" name="phone" placeholder="Enter phone Number" class="form-control">
+										 	 </div>
+											
+											 <!-- email -->
+											 
+											 <div class="input-group mt-3">
+											 	<div class="input-group-prepend">
+											 	<div class="input-group-text ">
+											 		@								
+											 		</div>
+											 	</div>	 
+											 <input th:value="${contact.email}" equired type="text" id="email" name="email" placeholder="Enter email here" class="form-control">
+											</div>
+											 
+											 <!-- work -->
+											 
+											 <div class="input-group mt-3">
+											 	 <div class="input-group-prepend">
+											 	  <div class="input-group-text ">
+											 		 <i class="fa fa-briefcase"></i>										
+											 			 </div>
+										 				</div>	 
+								     				<input th:value="${contact.work}" type="text" id="work" name="work" placeholder="Enter work here" class="form-control">
+											 	 </div>
+											 
+											<!--  description -->
+											
+											<div class="form-group mt-3">
+												<textarea th:text="${contact.description}" class="form-control" id="mytextarea" rows="10" name="mytextarea" placeholder="Enter description here" ></textarea>
+											</div>
+											
+											<!-- image -->
+											
+											<div class="custom-file">
+												<input th:value="${contact.image}" type="file" name="profileImage">
+											</div>
+											
+											<!-- button --> 
+											
+											<div class="container text-center">
+												<button class="btn btn-outline-primary">save contact</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+		</section>
+</body>
+</html>

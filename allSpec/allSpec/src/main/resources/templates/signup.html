@@ -1,0 +1,71 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="base::Layout(~{::section})">
+<head>
+<meta name="viewport" content="width = device-width, initial-scale = 1, shrink-to-fit = no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<title>smart contect</title>
+</head>
+
+<body>
+	<section>
+		<div class="container">
+		<div class ="row">
+			<div class="col-md-8 offset-md-2">
+				<div class="my-card mt-1">
+					
+					<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+					  <p class="text-center" th:text="${session.message.content}"></p>
+					</div>
+					
+					<div class="container text-center">
+						<img class="" style=" width: 80px;" th:src="@{/image/membership.png}">
+					</div>
+					<h1 class="text-center">Register here!!</h1>
+					<form action="" th:action="@{/do_register}" method="post" th:object="${sign}">
+						
+						<div class="mb-3">
+						    <label for="name">Your Name</label>
+						    <input th:classappend="${#fields.hasErrors('name') ? 'is-invalid':''}" 
+							th:value="${sign.name}" name="name"  th:field="*{name}" type="text" class="form-control" 
+							id="name" aria-describedby="emailHelp" placeholder="Enter here" required>
+							<div class="invalid-feedback" th:each="e :${#fields.errors('name')}" th:text"${e}">
+							      min 2 and max 20 characters are allowed
+							      </div>
+						  </div>
+						  
+						  <div class="mb-3">
+						  	<label for="email">Your Email</label>
+						  	<input th:value="${sign.email}" name="email"  th:field="*{email}" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter here" required>
+						  </div>
+						  
+						  <div class="mb-3">
+						  	<label for="password">Your Password</label>
+						    <input type="password" th:field="*{password}" class="form-control" id="password" aria-describedby="emailHelp" placeholder="Enter here" required>
+						 </div> 
+						 
+						 <div class="form-group">
+							<textarea th:value="${sign.about}" name="about" th:field="*{about}"  rows="10" placeholder="enter something about yourself" class="form-control"></textarea>
+						 </div>
+						 
+						 <div class="form-group form-check text-center">
+						 	<input  type="checkbox" class="form-check-input" id="agreement" name="agreement">
+							<label for="agreement">Accept terms and conditions</label>
+						 						 </div> 
+						 
+						 <div class="container text-center">
+							<button type="submit" class="btn bg-primary btn-block text-white">Submit</button>
+							<button type="reset" class="btn btn-warning btn-block text-white">Reset</button>
+						 </div>
+						 
+					</form>
+				</div>
+			</div>
+		</div>
+		</div>
+	</section>
+</body>
+</html>
+
+
